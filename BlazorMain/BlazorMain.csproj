@@ -15,19 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="FlyingModel.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Flying.cshtml" />
-    <Content Remove="Shared\Flying.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="content\flyingStyles.css" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.7.0" PrivateAssets="all" />
 
