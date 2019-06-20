@@ -1,0 +1,79 @@
+﻿@inherits EnemyModel
+@using InvadersGame.Helpers;
+
+<img src="images/invaders-game/invaders-sheet.png" class="@GetClass()" style="@GetStyle()" />
+
+@functions {
+    [Parameter]
+    private Models.Enemy Params { get; set; }
+
+    private string GetClass()
+    {
+        string className = "enemy";
+
+        if (Params.Status == Enums.StatusEnum.Dying)
+        {
+            className += " enemy-dead";
+
+            return className;
+        }
+
+        switch (Params.EnemyType)
+        {
+            case Enums.EnemyTypesEnum.Type1:
+                className += " " + (Params.Animation ? "enemy1anim1" : "enemy1anim2");
+                break;
+            case Enums.EnemyTypesEnum.Type2:
+                className += " " + (Params.Animation ? "enemy2anim1" : "enemy2anim2");
+                break;
+            case Enums.EnemyTypesEnum.Type3:
+                className += " " + (Params.Animation ? "enemy3anim1" : "enemy3anim2");
+                break;
+        }
+
+        return className;
+    }
+
+    private string GetStyle()
+    {
+        if (Params.Status == Enums.StatusEnum.Dead)
+        {
+            return "width: 0px; height 0px;";
+        }
+
+        var yPos = Constants.GameAreaHeight - Params.Ypos - Constants.Enemy3Height;
+
+        if (Params.Status == Enums.StatusEnum.Dying)
+        {
+            return "left: " + (Params.Xpos - (Constants.EnemyExplosionWidth / 2)) + "px; top: " + yPos + "px; " +
+                "width: " + Constants.EnemyExplosionWidth + "px; height: " + Constants.EnemyExplosionHeight + "px;";
+        }
+
+        switch (Params.EnemyType)
+        {
+            case Enums.EnemyTypesEnum.Type1:
+                return "left: " + (Params.Xpos - (Constants.Enemy1Width / 2)) + "px; top: " + yPos + "px; width: " + Constants.Enemy1Width + "px; " +
+                    "height: " + Constants.Enemy1Height + "px; ";
+            case Enums.EnemyTypesEnum.Type2:
+                return "left: " + (Params.Xpos - (Constants.Enemy2Width / 2)) + "px; top: " + yPos + "px; width: " + Constants.Enemy2Width + "px; " +
+                    "height: " + Constants.Enemy2Height + "px; ";
+            case Enums.EnemyTypesEnum.Type3:
+                return "left: " + (Params.Xpos - (Constants.Enemy3Width / 2)) + "px; top: " + yPos + "px; width: " + Constants.Enemy3Width + "px; " +
+                    "height: " + Constants.Enemy3Height + "px; ";
+        }
+
+        return string.Empty;
+    }
+
+    //protected override bool ShouldRender()
+    //{
+    //    //if (Xpos % 10 > 2)
+    //    //{
+    //    //    return false;
+    //    //}
+    //    //Console.WriteLine("Enemy: " + Xpos);
+    //    return base.ShouldRender();
+
+    //    //return Render ? base.ShouldRender() : false;
+    //}
+}

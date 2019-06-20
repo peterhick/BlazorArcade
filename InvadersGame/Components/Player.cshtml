@@ -1,0 +1,48 @@
+﻿@inherits PlayerModel
+@using InvadersGame.Helpers;
+@using InvadersGame.Models;
+
+<img src="images/invaders-game/invaders-sheet.png" class="@GetClass()" style="@GetStyle()" />
+
+@functions {
+    [Parameter]
+    private Models.Player Params { get; set; }
+
+    private string GetClass()
+    {
+        string className = "player";
+
+        if (Params.Status == Enums.StatusEnum.Dying)
+        {
+            className += " player-dead";
+        }
+
+        return className;
+    }
+
+    private string GetStyle()
+    {
+        if (Params.Status == Enums.StatusEnum.Dead || !Params.Visible)
+        {
+            return "width: 0px; height 0px;";
+        }
+
+        string style = "left:" + (Params.Xpos - (Params.Width / 2)) + "px; top:" + (Constants.GameAreaHeight - Params.Ypos - Params.Height) + "px; width:" + Params.Width + "px; height:" + Params.Height + "px;";
+
+        return style;
+    }
+
+    string Update()
+    {
+        StateHasChanged();
+
+        return "";
+    }
+
+    protected override bool ShouldRender()
+    {
+        //Console.WriteLine("Player: " + Xpos);
+
+        return base.ShouldRender();
+    }
+}

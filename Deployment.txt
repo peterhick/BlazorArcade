@@ -1,0 +1,17 @@
+Deployment instructions to deploy up to GitHub.
+-----------------------------------------------
+
+Make sure the solution compiles.
+Open a windows explorer instance looking at the solution folder.
+Type cmd in the path box.
+In the cmd windows type:	dotnet publish -c Release
+Using windows explorer navigate to:	BlazorMain > bin > Release > netstandard2.0 > publish > BlazorMain > dist
+Open your GitHub account and navigate to the blazor-arcade project.
+Drag all the files from windows explorer to your GitHub project page files area. This will take a minute to upload.
+Click the green Commit button below your files, this will take a few minutes to complete.
+Once the files are committed, go to the index.html page and edit it.
+Place a trailing slash immediately after /blazor-arcade so it looks like this:	<base href="/blazor-arcade/" />
+Commit the file.
+Now navigate to the GitHub page URL to check it all runs OK. (URL: https://peterhick.github.io/blazor-arcade/)
+
+If in doubt about the deployment process, you can read up on it at:	https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/razor-components/?view=aspnetcore-3.0

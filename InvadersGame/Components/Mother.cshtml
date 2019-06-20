@@ -1,0 +1,46 @@
+﻿@using InvadersGame.Helpers;
+
+<img src="images/invaders-game/invaders-sheet.png" class="@GetClass()" style="@GetStyle()" />
+@if (Params.Status == Enums.StatusEnum.Dying)
+{
+    <div class="mother-score" style="@GetScoreStyle()">@(Params.Score)</div>
+}
+
+@functions {
+    [Parameter]
+    private Models.Mother Params { get; set; }
+
+    private string GetClass()
+    {
+        string className = "mother";
+
+        if (Params.Status == Enums.StatusEnum.Dying)
+        {
+            className += " mother-dead";
+        }
+
+        return className;
+    }
+
+    private string GetStyle()
+    {
+        if ((Params.Status == Enums.StatusEnum.Dead) || !Params.Visible)
+        {
+            return "width: 0px; height 0px;";
+        }
+
+        if (Params.Status == Enums.StatusEnum.Dying)
+        {
+            return "left: " + (Params.Xpos - (Constants.EnemyExplosionWidth / 2)) + "px; top: " + (Constants.GameAreaHeight - Params.Ypos - Constants.EnemyExplosionHeight) + "px; " +
+                "width: " + Constants.EnemyExplosionWidth + "px; height: " + Constants.EnemyExplosionHeight + "px;";
+        }
+
+        return "left:" + (Params.Xpos - (Params.Width / 2)) + "px; top:" + (Constants.GameAreaHeight - Params.Ypos - Params.Height) + "px; width:" + Params.Width + "px; height:" + Params.Height + "px;";
+    }
+
+    private string GetScoreStyle()
+    {
+        return "left: " + (Params.Xpos - (Constants.EnemyExplosionWidth / 2) - 4) + "px; top: " + (Constants.GameAreaHeight - Params.Ypos - Constants.EnemyExplosionHeight - 4) + "px; " +
+            "width: 30px; height: " + Constants.EnemyExplosionHeight + "px;";
+    }
+}

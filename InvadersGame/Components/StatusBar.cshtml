@@ -1,0 +1,36 @@
+﻿@using InvadersGame.Helpers;
+<div class="status-bar">
+    <div class="status-score">
+        <p>Score:</p>
+        <p>@Score</p>
+    </div>
+    <div class="status-player">
+        <p>Lives:</p>
+        <div>
+            @for (int lifeIndex = 0; lifeIndex < Lives; lifeIndex++)
+            {
+                <img src="images/invaders-game/invaders-sheet.png" class="player-status" style="width: @(Constants.PlayerWidth)px; height: @(Constants.PlayerHeight)px;" />
+            }
+        </div>
+    </div>
+</div>
+
+@functions {
+    [Parameter]
+    private int Score { get; set; }
+    [Parameter]
+    private int Lives { get; set; }
+
+    internal string StyleForType()
+    {
+        //string style = "left:" + Xpos + "px; top:" + Ypos + "px; width:" + Width + "px; height:" + Height + "px;";
+
+        //if (Status == Enums.StatusEnum.Dying)
+        //{
+        //    return style + " object-position: -292px -52px;";
+        //}
+
+        //return style;
+        return "";
+    }
+}

@@ -1,0 +1,15 @@
+﻿@using InvadersGame.Models;
+@using InvadersGame.Helpers;
+
+<div class="bullet" style="left:@(Params.Xpos - (Params.Width / 2))px; top:@(Constants.GameAreaHeight - Params.Ypos - Params.Height)px; width:@(Params.Width)px; height:@(Params.Height)px; display:@(Visibility())">
+</div>
+
+@functions {
+    [Parameter]
+    private InvadersGame.Models.Bullet Params { get; set; }
+
+    string Visibility()
+    {
+        return Params.Visible ? "block" : "none";
+    }
+}

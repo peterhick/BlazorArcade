@@ -1,0 +1,72 @@
+﻿@using InvadersGame.Enums;
+@using InvadersGame.Helpers;
+
+@foreach (var enemyRow in Params.Matrix)
+{
+    foreach (var enemy in enemyRow.Where(e => e.Status != StatusEnum.Dead))
+    {
+        <img src="images/invaders-game/invaders-sheet.png" class="@GetClass(enemy)" style="@GetStyle(enemy)" />
+    }
+}
+
+@functions {
+    [Parameter]
+    private Models.Enemies Params { get; set; }
+
+    private string GetClass(Models.Enemy enemy)
+    {
+        string className = "enemy";
+
+        if (enemy.Status == Enums.StatusEnum.Dying)
+        {
+            className += " enemy-dead";
+
+            return className;
+        }
+
+        switch (enemy.EnemyType)
+        {
+            case Enums.EnemyTypesEnum.Type1:
+                className += enemy.Animation ? " enemy1anim1" : " enemy1anim2";
+                break;
+            case Enums.EnemyTypesEnum.Type2:
+                className += enemy.Animation ? " enemy2anim1" : " enemy2anim2";
+                break;
+            case Enums.EnemyTypesEnum.Type3:
+                className += enemy.Animation ? " enemy3anim1" : " enemy3anim2";
+                break;
+        }
+
+        return className;
+    }
+
+    private string GetStyle(Models.Enemy enemy)
+    {
+        if (enemy.Status == Enums.StatusEnum.Dead)
+        {
+            return "width: 0px; height 0px;";
+        }
+
+        var yPos = Constants.GameAreaHeight - enemy.Ypos - Constants.Enemy3Height;
+
+        if (enemy.Status == Enums.StatusEnum.Dying)
+        {
+            return "left: " + (enemy.Xpos - (Constants.EnemyExplosionWidth / 2)) + "px; top: " + yPos + "px; " +
+                "width: " + Constants.EnemyExplosionWidth + "px; height: " + Constants.EnemyExplosionHeight + "px;";
+        }
+
+        return "left: " + (enemy.Xpos - (enemy.Width / 2)) + "px; top: " + yPos + "px; width: " + enemy.Width + "px; " + "height: " + enemy.Height + "px;";
+    }
+
+    //protected override bool ShouldRender()
+    //{
+    //    //if (Xpos % 10 > 2)
+    //    //{
+    //    //    return false;
+    //    //}
+    //    //Console.WriteLine("Enemy: " + Xpos);
+    //    return base.ShouldRender();
+
+    //    //return Render ? base.ShouldRender() : false;
+    //}
+}

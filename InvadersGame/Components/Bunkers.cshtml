@@ -1,0 +1,78 @@
+﻿@using InvadersGame.Enums;
+@using InvadersGame.Helpers;
+
+@foreach (var bunker in Params.BunkerList)
+{
+    if (bunker.Visible)
+    {
+        <div class="bunker-table" style="@(GetStyle(bunker))">
+        @foreach (var brickRow in bunker.Bricks)
+        {
+            <div class="bunker-row">
+                @foreach (var brick in brickRow)
+                {
+                    <div class="@(GetCellClass(brick))" style="@(GetCellStyle())"></div>
+                }
+            </div>
+        }
+        </div>
+        @*<table class="bunker-table" style="@(GetStyle())">
+                @foreach (var brickRow in Params.Bricks)
+                {
+                    <tr class="bunker-row">
+                        @foreach (var brick in brickRow)
+                        {
+                            <td class="@(GetCellClass(brick))" style="@(GetCellStyle())"></td>
+                        }
+                    </tr>
+                }
+        </table>*@
+    }
+}
+
+@functions {
+    [Parameter]
+    private Models.Bunkers Params { get; set; }
+
+    private string GetCellClass(Models.Brick brick)
+    {
+        string cellClass = "bunker-cell ";
+
+        if (!brick.Visible)
+        {
+            return cellClass + "bunker-clear";
+        }
+
+        switch (brick.BrickType)
+        {
+            case BricksEnum.TopLeft:
+                return cellClass + "bunker-topleft";
+            case BricksEnum.TopRight:
+                return cellClass + "bunker-topright";
+            case BricksEnum.BottomLeft:
+                return cellClass + "bunker-bottomleft";
+            case BricksEnum.BottomRight:
+                return cellClass + "bunker-bottomright";
+            case BricksEnum.Full:
+                return cellClass + "bunker-set";
+            default:
+                return cellClass + "bunker-clear";
+        }
+    }
+
+    private string GetCellStyle()
+    {
+        //string style = "width:" + Constants.BrickSize + "px; height:" + Constants.BrickSize + "px;";
+        //string style = "width:0; border-bottom: " + Constants.BrickSize + "px solid green; height:0; border-left: " + Constants.BrickSize + "px solid transparent;";
+        string style = "width:" + Constants.BrickSize + "px; height:" + Constants.BrickSize + "px;";
+
+        return style;
+    }
+
+    private string GetStyle(Models.Bunker bunker)
+    {
+        string style = "left:" + (bunker.Xpos - (bunker.Width / 2)) + "px; top:" + (Constants.GameAreaHeight - bunker.Ypos - bunker.Height) + "px;";
+
+        return style;
+    }
+}

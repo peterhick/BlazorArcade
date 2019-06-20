@@ -1,0 +1,105 @@
+﻿@using InvadersGame.Helpers;
+@using InvadersGame.JsInterop;
+@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
+
+<div class="slider" style="width: @(Constants.GameAreaWidth)px; height: @(Constants.GameAreaHeight)px">
+    <div class="slides">
+        <div id="intro1" class="invaders-game slide-content" style="width: @(Constants.GameAreaWidth)px; height: @(Constants.GameAreaHeight)px" onclick="@PlayGame">
+            <div>
+                <p class="intro-title">
+                    Blazor Invaders
+                </p>
+            </div>
+
+            <div class="intro-scorelist">
+                <div class="intro-shipscore">
+                    <div class="intro-ship">
+                        <img src="images/invaders-game/invaders-sheet.png" class="mother ship-intro" style="width: @(Constants.MotherWidth)px; height: @(Constants.MotherHeight)px" />
+                    </div>
+                    ..........
+                    <div class="intro-score">? BONUS</div>
+                </div>
+                <div class="intro-shipscore">
+                    <div class="intro-ship">
+                        <img src="images/invaders-game/invaders-sheet.png" class="enemy enemy3anim1 ship-intro" style="width: @(Constants.Enemy3Width)px; height: @(Constants.Enemy3Height)px" />
+                    </div>
+                    ..........
+                    <div class="intro-score">30 POINTS</div>
+                </div>
+                <div class="intro-shipscore">
+                    <div class="intro-ship">
+                        <img src="images/invaders-game/invaders-sheet.png" class="enemy enemy2anim1 ship-intro" style="width: @(Constants.Enemy2Width)px; height: @(Constants.Enemy2Height)px" />
+                    </div>
+                    ..........
+                    <div class="intro-score">20 POINTS</div>
+                </div>
+                <div class="intro-shipscore">
+                    <div class="intro-ship">
+                        <img src="images/invaders-game/invaders-sheet.png" class="enemy enemy1anim1 ship-intro" style="width: @(Constants.Enemy1Width)px; height: @(Constants.Enemy1Height)px" />
+                    </div>
+                    ..........
+                    <div class="intro-score">10 POINTS</div>
+                </div>
+
+                <div class="intro-end">Click or press space to start</div>
+            </div>
+        </div>
+
+        <div id="intro2" class="invaders-game slider-content" style="width: @(Constants.GameAreaWidth)px; height: @(Constants.GameAreaHeight)px" onclick="@PlayGame">
+            <div>
+                <p class="intro-title">
+                    Blazor Invaders
+                </p>
+            </div>
+
+            <div class="intro-scorelist">
+                <div class="intro-start">Keys to play:</div>
+                <div class="intro-shipscore">
+                    <div class="intro-inline">
+                        Left / Right
+                    </div>
+                    ..........
+                    <div class="intro-inline">&#8592;, &#8594; &nbsp; or &nbsp; A, D</div>
+                </div>
+                <div class="intro-shipscore">
+                    <div class="intro-inline">
+                        Fire
+                    </div>
+                    ..........
+                    <div class="intro-inline">Space bar</div>
+                </div>
+                <div class="intro-shipscore">
+                    <div class="intro-inline">
+                        Pause / Unpause
+                    </div>
+                    ..........
+                    <div class="intro-inline">P</div>
+                </div>
+
+                <div class="intro-end">Click or press space to start</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions{
+    protected override void OnInit()
+    {
+        base.OnInit();
+        InteropKeyPress.KeyDown += OnKeyDown;
+    }
+
+    private void OnKeyDown(object sender, ConsoleKey e)
+    {
+        //Console.WriteLine("Key: " + e);
+        if (e == ConsoleKey.Spacebar)
+        {
+            UriHelper.NavigateTo("invadersplay");
+        }
+    }
+
+    private void PlayGame()
+    {
+        UriHelper.NavigateTo("invadersplay");
+    }
+}

@@ -1,0 +1,22 @@
+Enemy explosion
+    left: 396px;
+    top: 235px;
+    width: 21px;
+    height: 15px;
+    object-position: -348px -53px;
+
+Player explosion
+	object-position: -292px -52px;
+
+Mother ship
+	
+element.style {
+    width: 40px;
+    height: 18px;
+    text-align: center;
+}
+.player-status {
+    position: relative;
+    object-fit: none;
+    object-position: -171px -12px;
+}

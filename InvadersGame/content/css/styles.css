@@ -1,0 +1,402 @@
+﻿/*
+    This file is to show how CSS and other static resources (such as images) can be
+    used from a library project/package.
+*/
+
+.intro-title {
+    font-family: fantasy;
+    font-size: 4rem;
+    text-align: center;
+    color: white;
+}
+
+.intro-shipscore {
+    text-align: center;
+    color: white;
+    font-family: monospace;
+    font-size: 1.5rem;
+    padding: 10px 0;
+}
+
+.intro-ship {
+    width: 50px;
+    display: inline-block;
+}
+
+.intro-score {
+    width: 124px;
+    display: inline-block;
+}
+
+.intro-inline {
+    display: inline-block;
+    padding: 0 10px;
+    width: 200px;
+}
+
+.intro-scorelist {
+    padding: 25px 0;
+    text-align: center;
+}
+
+.intro-start, .intro-end {
+    color: yellowgreen;
+    text-align: center;
+    width: 100%;
+    padding: 0 0 30px 0;
+}
+
+.intro-end {
+    position: absolute;
+    bottom: 0;
+    padding: 20px 0;
+}
+
+.invaders-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.inv-cont-gameover {
+    transition: opacity 1s;
+    opacity: 0.5;
+}
+
+.invaders-game {
+    background-color: black;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.gameover {
+    text-align: center;
+    font-size: 4rem;
+    z-index: 500;
+    color: white;
+    display: table;
+    position: absolute;
+    top: 150px;
+    transition: text-shadow 3s;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+}
+
+.enemy,
+.mother,
+.mother-score,
+.player,
+.bullet,
+.bunker-table
+{
+    position: absolute;
+}
+
+.enemy,
+.mother,
+.player {
+    object-fit: none;
+}
+
+.player {
+    /*transform: translateX(-25px);*/
+    /*background-image: url('../images/background.png');
+    width: 30px;
+    height: 20px;*/
+    object-position: -220px -15px;
+    /*width: 22px;
+    height: 15px;*/
+}
+
+.player-dead {
+    object-position: -292px -52px;
+}
+
+.enemy {
+    /*transform: translateX(-15px);*/
+    /*object-position: -5px -12px;
+    width: 14px;
+    height: 15px;*/
+    /*transform:scale(1.2, 1.2);    -- bigger graphics*/
+    z-index: 5;
+}
+
+.enemy1anim1 {
+    object-position: -117px -13px;
+}
+.enemy1anim2 {
+    object-position: -143px -13px;
+}
+.enemy2anim1 {
+    object-position: -59px -13px;
+}
+.enemy2anim2 {
+    object-position: -85px -13px;
+}
+.enemy3anim1 {
+    object-position: -5px -12px;
+}
+.enemy3anim2 {
+    object-position: -32px -12px;
+}
+
+.enemy-dead {
+    object-position: -348px -53px;
+}
+
+.mother {
+    object-position: -171px -12px;
+}
+
+.mother-dead {
+    object-position: -348px -53px;
+    transform: scale(1.8, 1.8);
+}
+
+.mother-score {
+    z-index: 100;
+    color: #f14c5c;
+    font-weight: bold;
+    text-align: center;
+}
+
+.bullet {
+    /*width: 4px;
+    height: 12px;*/
+    background-color: white;
+    z-index: 10;
+}
+
+.status-bar {
+    color: white;
+    padding: 0 10px;
+}
+
+.status-score {
+    position: relative;
+    float: left;
+}
+
+    .status-score > p,
+    .status-player > p,
+    .status-player > div {
+        display: inline-block;
+    }
+
+    .status-score > p {
+        padding-right: 20px;
+    }
+
+.status-player > div {
+    padding-left: 20px;
+    width: 96px;
+}
+
+.status-player {
+    position: relative;
+    float: right;
+}
+
+.player-status {
+    position: relative;
+    object-fit: none;
+    object-position: -220px -15px;
+}
+
+.ship-intro {
+    position: relative;
+}
+
+.bunker-table {
+    display: table;
+}
+
+.bunker-row {
+    display: table-row;
+}
+
+.bunker-cell {
+    display: table-cell;
+    /*border-top-left-radius: 5px;*/
+    /*width: 4px;
+    height: 4px;*/
+}
+
+.bunker-set /*.bunker-topleft, .bunker-topright*/ {
+    background-color: #00DD00;
+}
+
+.bunker-clear {
+    background-color: black;
+}
+
+.bunker-topleft {
+    /*border-radius: 10px 0 0 0;*/
+    width: 0;
+    height: 0;
+    border-right: 6px solid #00DD00;
+    border-top: 6px solid transparent;
+    border-left: 6px solid transparent;
+    border-bottom: 6px solid #00DD00;
+}
+
+.bunker-topright {
+    /*border-radius: 0 10px 0 0;*/
+    width: 0;
+    height: 0;
+    border-right: 6px solid transparent;
+    border-top: 6px solid transparent;
+    border-left: 6px solid #00DD00;
+    border-bottom: 6px solid #00DD00;
+}
+
+.bunker-bottomleft {
+    width: 0;
+    height: 0;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #00DD00;
+    border-left: 6px solid #00DD00;
+    border-bottom: 6px solid transparent;
+}
+
+.bunker-bottomright {
+    width: 0;
+    height: 0;
+    border-right: 6px solid #00DD00;
+    border-top: 6px solid #00DD00;
+    border-left: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+}
+
+.debug-class {
+    /*position: relative;
+    left: 10px;*/
+    /*top: 100px;*/
+    display: inline-block;
+    color: dodgerblue;
+}
+
+/*
+    Intro slider.
+*/
+.slider {
+    overflow: hidden;
+}
+
+.slides {
+    width: 200%;
+    height: 100%;
+    -webkit-animation: slide 10s infinite;
+    -moz-animation: slide 10s infinite;
+    animation: slide 10s infinite;
+    /*-webkit-animation-iteration-count: 2,2,2,2; /* Chrome, Safari, Opera */
+    /*animation-iteration-count: 2,2,2,2;*/
+}
+
+.slider-content {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+@-webkit-keyframes slide {
+    0%,100% {
+        margin-left: 0%;
+    }
+
+    12% {
+        margin-left: 0%;
+    }
+
+    24% {
+        margin-left: 0%;
+    }
+
+    36% {
+        margin-left: 0%;
+    }
+
+    48% {
+        margin-left: -100%;
+    }
+
+    60% {
+        margin-left: -100%;
+    }
+
+    72% {
+        margin-left: -100%;
+    }
+
+    84% {
+        margin-left: -100%;
+    }
+}
+
+@-moz-keyframes slide {
+    0%,100% {
+        margin-left: 0%;
+    }
+
+    12% {
+        margin-left: 0%;
+    }
+
+    24% {
+        margin-left: 0%;
+    }
+
+    36% {
+        margin-left: 0%;
+    }
+
+    48% {
+        margin-left: -100%;
+    }
+
+    60% {
+        margin-left: -100%;
+    }
+
+    72% {
+        margin-left: -100%;
+    }
+
+    84% {
+        margin-left: -100%;
+    }
+}
+
+@keyframes slide {
+    0%,100% {
+        margin-left: 0%;
+    }
+
+    12% {
+        margin-left: 0%;
+    }
+
+    24% {
+        margin-left: 0%;
+    }
+
+    36% {
+        margin-left: 0%;
+    }
+
+    48% {
+        margin-left: -100%;
+    }
+
+    60% {
+        margin-left: -100%;
+    }
+
+    72% {
+        margin-left: -100%;
+    }
+
+    84% {
+        margin-left: -100%;
+    }
+}

@@ -1,0 +1,77 @@
+﻿@inherits InvadersGameModel
+@using InvadersGame.Enums;
+@using InvadersGame.Helpers;
+@using System
+@implements IDisposable
+
+@*<div class="my-component">
+    This Blazor component is defined in the <strong>InvadersGame</strong> package.
+</div>*@
+
+<div class="invaders-container">
+    <div class="@(GetGameAreaClass())" style="width: @(Constants.GameAreaWidth)px; height: @(Constants.GameAreaHeight)px">
+        <StatusBar Score="@Score" Lives="@Lives"></StatusBar>
+        <Mother Params="@(Mother)"></Mother>
+
+        @*@foreach (var enemyRow in Enemies.Matrix)
+            {
+                foreach (var enemy in enemyRow.Where(e => e.Status != StatusEnum.Dead))
+                {
+                    <Enemy Params="@(enemy)"></Enemy>
+                }
+            }*@
+        <Enemies Params="@(Enemies)"></Enemies>
+
+        <Player Params="@(Player)"></Player>
+
+        <Bullet Params="@(PlayerBullet)"></Bullet>
+        <Bullet Params="@(EnemyBullet)"></Bullet>
+
+        <Bunkers Params="@(Bunkers)"></Bunkers>
+    </div>
+
+    @if (GameStatus == GameEnum.Dead)
+    {
+        <div class="gameover" style="width: @(Constants.GameAreaWidth)px; height: @(Constants.GameAreaHeight)px">Game Over</div>
+    }
+
+    @if (!HtmlHelper.IsReleaseBuild())
+    {
+        <div class="debug-class">
+            <div class="debug-class2">Date/time: @DateTimeOutput</div>
+            <div class="debug-class2">Actual frame rate: @actualFrameRate</div>
+            <div class="debug-class2">Player X: @Player.Xpos</div>
+            <div class="debug-class2">Player Y: @Player.Ypos</div>
+            <div class="debug-class2">Player bullet: @PlayerBullet.Visible</div>
+            <div class="debug-class2">Player bullet X: @PlayerBullet.Xpos</div>
+            <div class="debug-class2">Player bullet Y: @PlayerBullet.Ypos</div>
+            <div class="debug-class2">Key press: @LastKeyPress</div>
+            <div class="debug-class2">Var 1: @Var1</div>
+            <div class="debug-class2">Var 2: @Var2</div>
+            <div class="debug-class2">Var 3: @Var3</div>
+            <div class="debug-class2">Var 4: @Var4</div>
+        </div>
+    }
+</div>
+
+@functions {
+    //int gameAreaWidth = 800;
+    //int gameAreaHeight = 600;
+    // Image="images/invaders-game/type1a1.png" 
+
+    //void MyAlert()
+    //{
+    //    PlayerX++;
+    //    Console.Write("Player X: " + PlayerX);
+    //}
+
+    string GetGameAreaClass()
+    {
+        return "invaders-game" + (GameStatus == GameEnum.Dead ? " inv-cont-gameover" : string.Empty);
+    }
+
+    public void Dispose()
+    {
+        StopGame();
+    }
+}
