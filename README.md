@@ -10,3 +10,4 @@ http://peterhick.github.io/blazor-arcade
     - Microsoft.AspNetCore.Blazor.Build (v0.7.0)
     - NETStandard.Library (v2.0.3)
 - .NET Core 2.2 SDK and runtimes must be installed
+This is my readme page
