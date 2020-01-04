@@ -44,7 +44,7 @@ window.JsFunctions = {
 
 document.onkeydown = function (evt) {
     evt = evt || window.event;
-    DotNet.invokeMethodAsync('InvadersGame', 'JsKeyDown', evt.keyCode);
+    DotNet.invokeMethodAsync('BreakoutGame', 'JsKeyDown', evt.keyCode);
 
     //Prevent all but F5 and F12
     if (evt.keyCode !== 116 && evt.keyCode !== 123)
@@ -53,7 +53,7 @@ document.onkeydown = function (evt) {
 
 document.onkeyup = function (evt) {
     evt = evt || window.event;
-    DotNet.invokeMethodAsync('InvadersGame', 'JsKeyUp', evt.keyCode);
+    DotNet.invokeMethodAsync('BreakoutGame', 'JsKeyUp', evt.keyCode);
 
     //Prevent all but F5 and F12
     if (evt.keyCode !== 116 && evt.keyCode !== 123)
@@ -62,7 +62,7 @@ document.onkeyup = function (evt) {
 
 document.onkeypress = function (evt) {
     evt = evt || window.event;
-    DotNet.invokeMethodAsync('InvadersGame', 'JsKeyPress', evt.keyCode);
+    DotNet.invokeMethodAsync('BreakoutGame', 'JsKeyPress', evt.keyCode);
 
     //Prevent all but F5 and F12
     if (evt.keyCode !== 116 && evt.keyCode !== 123)

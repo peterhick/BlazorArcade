@@ -1,0 +1,64 @@
+﻿@using BreakoutGame.Enums;
+@using BreakoutGame.Helpers;
+
+@foreach (var row in Params.Matrix)
+{
+    foreach (var brick in row.Where(e => e.Status != StatusEnum.Dead && e.Visible))
+    {
+        @*<brick Params=brick></brick>*@
+        <div class="@GetClass(brick)" style="@GetStyle(brick)"></div>
+    }
+}
+
+@functions {
+    [Parameter]
+    private Models.Bricks Params { get; set; }
+
+    private string GetClass(Models.Brick brick)
+    {
+        string className = "";
+
+        switch (brick.BrickType)
+        {
+            case Enums.BrickTypesEnum.Type1:
+                className += "blue";
+                break;
+            case Enums.BrickTypesEnum.Type2:
+                className += "green";
+                break;
+            case Enums.BrickTypesEnum.Type3:
+                className += "orange";
+                break;
+            case Enums.BrickTypesEnum.Type4:
+                className += "red";
+                break;
+        }
+
+        return className + "brick";
+    }
+
+    private string GetStyle(Models.Brick brick)
+    {
+        if (brick.Status == Enums.StatusEnum.Dead)
+        {
+            return "width: 0px; height 0px;";
+        }
+
+        var yPos = Constants.GameAreaHeight - brick.Ypos;
+
+        return "left: " + (brick.Xpos - (brick.Width / 2)) + "px; top: " + (yPos - (brick.Height / 2)) + "px; width: " + brick.Width + "px; " +
+            "height: " + brick.Height + "px; ";
+
+    }
+    //protected override bool ShouldRender()
+    //{
+    //    //if (Xpos % 10 > 2)
+    //    //{
+    //    //    return false;
+    //    //}
+
+    //    return base.ShouldRender();
+
+    //    //return Render ? base.ShouldRender() : false;
+    //}
+}

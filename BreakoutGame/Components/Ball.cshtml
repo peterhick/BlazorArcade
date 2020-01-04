@@ -1,0 +1,15 @@
+﻿@using BreakoutGame.Models;
+@using BreakoutGame.Helpers;
+
+<div class="ball" style="left:@(Params.Xpos - (Params.Width / 2))px; top:@(Constants.GameAreaHeight - Params.Ypos - (Params.Height / 2))px; width:@(Params.Width)px; height:@(Params.Height)px; display:@(Visibility())">
+</div>
+
+@functions {
+    [Parameter]
+    private BreakoutGame.Models.Ball Params { get; set; }
+
+    string Visibility()
+    {
+        return Params.Visible ? "block" : "none";
+    }
+}

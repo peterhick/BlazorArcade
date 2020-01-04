@@ -1,0 +1,56 @@
+﻿@inherits BreakoutGameModel
+@using BreakoutGame.Enums;
+@using BreakoutGame.Helpers;
+@using System
+@implements IDisposable
+@*<div class="my-component">
+        This Blazor component is defined in the <strong>BreakoutGame</strong> package.
+    </div>*@
+
+<div class="breakout-container">
+    <div class="@(GetGameAreaClass())" style="width: @(Constants.GameAreaWidth)px; height: @(Constants.GameAreaHeight)px">
+        <StatusBar Score="@Score" Lives="@Lives"></StatusBar>
+        <Arena></Arena>
+
+        <Bricks Params="@(Bricks)"></Bricks>
+
+        <Player Params="@(Player)"></Player>
+
+        <Ball Params="@(Ball)"></Ball>
+    </div>
+
+    @if (GameStatus == GameEnum.Dead)
+    {
+        <div class="breakout-gameover" style="width: @(Constants.GameAreaWidth)px; height: @(Constants.GameAreaHeight)px">Game Over</div>
+    }
+
+    @if (!HtmlHelper.IsReleaseBuild())
+    {
+        <div class="debug-class">
+            <div class="debug-class2">Date/time: @DateTimeOutput</div>
+            <div class="debug-class2">Actual frame rate: @actualFrameRate</div>
+            <div class="debug-class2">Player X: @Player.Xpos</div>
+            <div class="debug-class2">Player Y: @Player.Ypos</div>
+            <div class="debug-class2">Ball: @Ball.Visible</div>
+            <div class="debug-class2">Ball X: @Ball.Xpos</div>
+            <div class="debug-class2">Ball Y: @Ball.Ypos</div>
+            <div class="debug-class2">Key press: @LastKeyPress</div>
+            <div class="debug-class2">Var 1: @Var1</div>
+            <div class="debug-class2">Var 2: @Var2</div>
+            <div class="debug-class2">Var 3: @Var3</div>
+            <div class="debug-class2">Var 4: @Var4</div>
+        </div>
+    }
+</div>
+
+@functions {
+    string GetGameAreaClass()
+    {
+        return "breakout-game" + (GameStatus == GameEnum.Dead ? " inv-cont-gameover" : string.Empty);
+    }
+
+    public void Dispose()
+    {
+        StopGame();
+    }
+}

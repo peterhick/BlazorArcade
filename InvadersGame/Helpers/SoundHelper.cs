@@ -18,6 +18,7 @@ namespace InvadersGame.Helpers
 
         public static void InitialiseSound()
         {
+            JsInterop.InteropSound.ClearSounds();
             JsInterop.InteropSound.InitialiseSound(SoundsEnum.Explosion, SoundPath + Explosion);
             JsInterop.InteropSound.InitialiseSound(SoundsEnum.Inv1, SoundPath + Inv1);
             JsInterop.InteropSound.InitialiseSound(SoundsEnum.Inv2, SoundPath + Inv2);

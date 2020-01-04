@@ -1,0 +1,59 @@
+﻿@inherits BrickModel
+@using BreakoutGame.Helpers;
+
+@*<img src="images/invaders-game/invaders-sheet.png" class="@GetClass()" style="@GetStyle()" />*@
+<div class="@GetClass()" style="@GetStyle()" ></div>
+
+@functions {
+    [Parameter]
+    private Models.Brick Params { get; set; }
+
+    private string GetClass()
+    {
+        string className = "";
+
+        switch (Params.BrickType)
+        {
+            case Enums.BrickTypesEnum.Type1:
+                className += "blue";
+                break;
+            case Enums.BrickTypesEnum.Type2:
+                className += "green";
+                break;
+            case Enums.BrickTypesEnum.Type3:
+                className += "orange";
+                break;
+            case Enums.BrickTypesEnum.Type4:
+                className += "red";
+                break;
+        }
+
+        return className + "brick";
+    }
+
+    private string GetStyle()
+    {
+        if (Params.Status == Enums.StatusEnum.Dead)
+        {
+            return "width: 0px; height 0px;";
+        }
+
+        var yPos = Constants.GameAreaHeight - Params.Ypos - Constants.BrickHeight;
+
+        return "left: " + (Params.Xpos - (Constants.BrickWidth / 2)) + "px; top: " + yPos + "px; width: " + Constants.BrickWidth + "px; " +
+            "height: " + Constants.BrickHeight + "px; ";
+
+    }
+
+    //protected override bool ShouldRender()
+    //{
+    //    //if (Xpos % 10 > 2)
+    //    //{
+    //    //    return false;
+    //    //}
+
+    //    return base.ShouldRender();
+
+    //    //return Render ? base.ShouldRender() : false;
+    //}
+}

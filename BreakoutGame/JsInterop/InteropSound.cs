@@ -1,8 +1,8 @@
-﻿using InvadersGame.Enums;
+﻿using BreakoutGame.Enums;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace InvadersGame.JsInterop
+namespace BreakoutGame.JsInterop
 {
     public class InteropSound
     {

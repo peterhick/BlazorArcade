@@ -103,10 +103,25 @@ namespace InvadersGame
         /// </summary>
         private void SetGameTimer()
         {
+            if (Common.Global.CurrentGame != "invaders")
+            {
+                return;
+            }
+
             timer = new Timer(1000 / Constants.FrameRate);
             timer.Elapsed += async (s, e) => await GameLoop();
             timer.AutoReset = false;
             timer.Enabled = true;
+        }
+
+        private void StartGameTimer()
+        {
+            if (Common.Global.CurrentGame != "invaders")
+            {
+                return;
+            }
+
+            timer.Start();
         }
 
         private async Task GameLoop()
@@ -115,7 +130,7 @@ namespace InvadersGame
             StateHasChanged();
 
             FrameCounter();
-            timer.Start();
+            StartGameTimer();
         }
 
         private void FrameCounter()
@@ -138,6 +153,11 @@ namespace InvadersGame
 
         protected override void OnInit()
         {
+            if (Common.Global.CurrentGame != "invaders")
+            {
+                return;
+            }
+
             base.OnInit();
             Initialise();
             // Timer method 1.
@@ -209,6 +229,7 @@ namespace InvadersGame
             //Var2="Bunker Xindex: "+
             //Var3 = "Bunker.Width: " + Bunker.Width.ToString();
             //Var4 = "Bunker.Xpos - ((Bunker.Width * Constants.BrickSize) / 2): " + (Bunker.Xpos - ((Bunker.Width * Constants.BrickSize) / 2)).ToString();
+            Var4 = "Current game: " + Common.Global.CurrentGame;
         }
 
         private void PlayerBackgroundSound(int counter, int timer)

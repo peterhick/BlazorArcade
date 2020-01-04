@@ -1,0 +1,19 @@
+﻿@using BreakoutGame.Helpers;
+<div class="status-bar">
+    <div class="status-score">
+        <p>Score:</p>
+        <p>@Score</p>
+    </div>
+    <div class="status-player">
+        <p>Lives:</p>
+        <p>@Lives</p>
+
+    </div>
+</div>
+
+@functions {
+    [Parameter]
+    private int Score { get; set; }
+    [Parameter]
+    private int Lives { get; set; }
+}

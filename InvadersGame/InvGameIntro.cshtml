@@ -1,6 +1,7 @@
 ﻿@using InvadersGame.Helpers;
 @using InvadersGame.JsInterop;
 @inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
+@implements IDisposable
 
 <div class="slider" style="width: @(Constants.GameAreaWidth)px; height: @(Constants.GameAreaHeight)px">
     <div class="slides">
@@ -85,6 +86,7 @@
 @functions{
     protected override void OnInit()
     {
+        Common.Global.CurrentGame = "invaders";
         base.OnInit();
         InteropKeyPress.KeyDown += OnKeyDown;
     }
@@ -101,5 +103,10 @@
     private void PlayGame()
     {
         UriHelper.NavigateTo("invadersplay");
+    }
+
+    public void Dispose()
+    {
+        //StopGame();
     }
 }

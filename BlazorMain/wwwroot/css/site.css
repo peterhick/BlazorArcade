@@ -133,14 +133,22 @@ app {
     }
 }
 
-.span-invaders {
+.span-invaders, .span-breakout {
     top: -12px !important;
 }
 
 .invaders {
     width: 100%;
-    padding-right: 5px;
+    padding-right: 7px;
     margin-left: -5px;
+    padding-top: 1.5rem;
+}
+
+.breakout {
+    width: 100%;
+    padding-right: 5px;
+    margin-left: -7px;
+    padding-top: 1.5rem;
 }
 
 /*----------------------------------------------*/
