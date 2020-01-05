@@ -1,10 +1,8 @@
 ﻿using Microsoft.JSInterop;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace InvadersGame.JsInterop
+namespace Common.JsInterop
 {
     /// <summary>
     /// Proxy for receiving key press events from JavaScript.
@@ -25,6 +23,24 @@ namespace InvadersGame.JsInterop
         /// Fires when a KeyPress message is received from JavaScript.
         /// </summary>
         public static event EventHandler<ConsoleKey> KeyPress;
+
+        public static void RemoveAllEvents()
+        {
+            RemoveEvents(KeyUp);
+            RemoveEvents(KeyDown);
+            RemoveEvents(KeyPress);
+        }
+
+        private static void RemoveEvents(EventHandler<ConsoleKey> eventHandler)
+        {
+            eventHandler = new EventHandler<ConsoleKey>(Dummy);
+            eventHandler -= Dummy;
+        }
+
+        private static void Dummy(object sender, ConsoleKey e)
+        {
+            return;
+        }
 
         /// <summary>
         /// Called by JavaScript when a Key Down event fires.

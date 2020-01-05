@@ -1,7 +1,7 @@
-﻿using InvadersGame.Components;
+﻿using Common.JsInterop;
+using InvadersGame.Components;
 using InvadersGame.Enums;
 using InvadersGame.Helpers;
-using InvadersGame.JsInterop;
 using InvadersGame.Models;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
@@ -622,6 +622,7 @@ namespace InvadersGame
 
         private void Initialise(int score = 0, int lives = Constants.InitialPlayerLives)
         {
+            InteropKeyPress.RemoveAllEvents();
             InteropKeyPress.KeyDown += OnKeyDown;
             InteropKeyPress.KeyUp += OnKeyUp;
             //InteropKeyPress.KeyPress += OnKeyPress;

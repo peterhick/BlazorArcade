@@ -1,7 +1,7 @@
 ﻿using BreakoutGame.Enums;
 using BreakoutGame.Helpers;
-using BreakoutGame.JsInterop;
 using BreakoutGame.Models;
+using Common.JsInterop;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
 using System.Collections.Generic;
@@ -519,6 +519,7 @@ namespace BreakoutGame
 
         private void Initialise(int score = 0, int lives = Constants.InitialPlayerLives)
         {
+            InteropKeyPress.RemoveAllEvents();
             InteropKeyPress.KeyDown += OnKeyDown;
             InteropKeyPress.KeyUp += OnKeyUp;
             //InteropKeyPress.KeyPress += OnKeyPress;

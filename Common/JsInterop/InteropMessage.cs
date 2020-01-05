@@ -1,7 +1,7 @@
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace InvadersGame.JsInterop
+namespace Common.JsInterop
 {
     public class InteropMessage
     {

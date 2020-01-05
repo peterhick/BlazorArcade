@@ -1,5 +1,5 @@
 ﻿@using BreakoutGame.Helpers;
-@using BreakoutGame.JsInterop;
+@using Common.JsInterop;
 @inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
 @implements IDisposable
 
@@ -73,6 +73,7 @@
     {
         Common.Global.CurrentGame = "breakout";
         base.OnInit();
+        InteropKeyPress.RemoveAllEvents();
         InteropKeyPress.KeyDown += OnKeyDown;
     }
 
@@ -81,12 +82,16 @@
         //Console.WriteLine("Key: " + e);
         if (e == ConsoleKey.Spacebar)
         {
+            InteropKeyPress.KeyDown -= OnKeyDown;
+            InteropKeyPress.RemoveAllEvents();
             UriHelper.NavigateTo("breakoutplay");
         }
     }
 
     private void PlayGame()
     {
+        InteropKeyPress.KeyDown -= OnKeyDown;
+        InteropKeyPress.RemoveAllEvents();
         UriHelper.NavigateTo("breakoutplay");
     }
 

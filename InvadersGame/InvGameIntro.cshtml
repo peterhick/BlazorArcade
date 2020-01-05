@@ -1,5 +1,5 @@
 ﻿@using InvadersGame.Helpers;
-@using InvadersGame.JsInterop;
+@using Common.JsInterop;
 @inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
 @implements IDisposable
 
@@ -88,6 +88,7 @@
     {
         Common.Global.CurrentGame = "invaders";
         base.OnInit();
+        InteropKeyPress.RemoveAllEvents();
         InteropKeyPress.KeyDown += OnKeyDown;
     }
 
@@ -96,12 +97,16 @@
         //Console.WriteLine("Key: " + e);
         if (e == ConsoleKey.Spacebar)
         {
+            InteropKeyPress.KeyDown -= OnKeyDown;
+            InteropKeyPress.RemoveAllEvents();
             UriHelper.NavigateTo("invadersplay");
         }
     }
 
     private void PlayGame()
     {
+        InteropKeyPress.KeyDown -= OnKeyDown;
+        InteropKeyPress.RemoveAllEvents();
         UriHelper.NavigateTo("invadersplay");
     }
 
